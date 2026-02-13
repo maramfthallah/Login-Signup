@@ -1,12 +1,19 @@
 //import logo from './logo.svg';
-import './App.css';
+
 import LoginSignin from './components/loginSignin/loginSignin';
+import MainLayout from './components/pages/mainLayout';
+import Header from './components/pages/header';
+import Sidebar from './components/pages/sidebar';
 
 function App() {
   return (
     <div>
-      <LoginSignin />
+      <MainLayout/>
+      <Header/>
+      <Sidebar/>
     </div>
+     
+   
   );
 }
 

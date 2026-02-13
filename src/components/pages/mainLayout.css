@@ -1,0 +1,65 @@
+/*Importing Google Fonts-Inter*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Outfit:wght@100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter",sans-serif;
+}
+.container1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#F4F0FF,#DACDFF);
+}
+.chat-footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+   padding: 15px 20px 25px;
+}
+.chat-footer .chat-form{ 
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 32px;
+    outline: 1px solid #CCCCE5;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+.chat-footer .chat-form:focus-within{
+    outline: 2px solid #6D4FC2;
+}
+.chat-form .message-input{
+    border: none;
+    outline: none;
+    width: 100%;
+    background: none;
+    height: 47px;
+    padding: 0 17px;
+    font-size: 0.95rem;
+}
+.chat-form button{
+    height: 35px;
+    width: 35px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.15rem;
+    color: #fff;
+    flex-shrink: 0;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #6D4FC2;
+    transition: 0.2s ease;
+}
+.chat-form button:hover{
+    background: #593bab;
+}
+.ask {
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 20px; 
+}

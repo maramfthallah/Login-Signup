@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Outfit:wght@100..900&display=swap');
+
+/* Header général */
+header {
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Logo du site */
+.logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ab92ef;
+}
+.logo-container{
+    height:35px;
+    margin-bottom: 22px;
+    width: 35px;
+    padding: 6px;
+    flex-shrink: 0;
+    fill: #6D4FC2;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* Container des boutons */
+header .buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Container du bouton */
+.langButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bouton icône */
+.langIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: #f4f0ff;
+    color: #6D4FC2; /* couleur icône */
+    cursor: pointer;
+    font-size: 22px;
+    transition: all 0.25s ease;
+}
+
+/* Hover élégant */
+.langIcon:hover {
+    background: #6D4FC2;
+    color: #fff;
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(109, 79, 194, 0.3);
+}
+
+/* Effet au clic */
+.langIcon:active {
+    transform: scale(0.95);
+}
+
+/* Bouton Login - minimal chic */
+header .loginButton {
+    padding: 10px 20px;
+    border-radius: 30px; /* forme pill moderne */
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+header .loginButton:hover {
+    border-color: #6D4FC2;
+    color: #6D4FC2;
+}
+
+
+/* Bouton Sign Up - élégant premium */
+header .signupButton {
+    padding: 10px 22px;
+    border-radius: 30px; /* pill shape */
+    border: none;
+    background: #6D4FC2;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+header .signupButton:hover {
+    background: #5a3db5;
+}
