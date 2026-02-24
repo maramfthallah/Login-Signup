@@ -1,65 +1,360 @@
-/*Importing Google Fonts-Inter*/
+/* ==========================================================================
+   GOOGLE FONTS + RESET
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Outfit:wght@100..900&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter",sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.container1{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(#F4F0FF,#DACDFF);
+
+html, body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
-.chat-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-   padding: 15px 20px 25px;
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #F4F0FF 0%, #DACDFF 100%);
+  color: #1a1a2e;
+  line-height: 1.5;
+  overflow-x: hidden;
 }
-.chat-footer .chat-form{ 
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 32px;
-    outline: 1px solid #CCCCE5;
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+
+/* ==========================================================================
+   MAIN CONTAINER
+   ========================================================================== */
+.container1 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 3vw, 20px);
+  gap: clamp(1rem, 4vh, 2.5rem);
+  position: relative;
+  overflow-x: hidden;
 }
-.chat-footer .chat-form:focus-within{
-    outline: 2px solid #6D4FC2;
-}
-.chat-form .message-input{
-    border: none;
-    outline: none;
-    width: 100%;
-    background: none;
-    height: 47px;
-    padding: 0 17px;
-    font-size: 0.95rem;
-}
-.chat-form button{
-    height: 35px;
-    width: 35px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.15rem;
-    color: #fff;
-    flex-shrink: 0;
-    margin-right: 6px;
-    border-radius: 50%;
-    background: #6D4FC2;
-    transition: 0.2s ease;
-}
-.chat-form button:hover{
-    background: #593bab;
-}
+
+/* ==========================================================================
+   TITLE
+   ========================================================================== */
 .ask {
-    text-align: center;
-    font-weight: bolder;
-    margin-bottom: 20px; 
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  color: #4a3a8c;
+  margin-bottom: clamp(0.5rem, 2vh, 1.25rem);
+  letter-spacing: -0.02em;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 10px;
+}
+
+/* ==========================================================================
+   CHAT FOOTER & INPUT BAR - CORRIGÉ POUR LES LONGS TEXTES/FICHIERS
+   ========================================================================== */
+.chat-footer {
+  width: 100%;
+  max-width: min(100%, 900px);
+  padding: 0 clamp(8px, 2vw, 20px);
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.chat-form {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.5vw, 8px);
+  width: 100%;
+  padding: clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 14px);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: clamp(24px, 5vw, 32px);
+  border: 1px solid rgba(204, 204, 229, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden; /* Empêche le débordement */
+}
+
+.chat-form:focus-within {
+  border-color: #6D4FC2;
+  box-shadow: 0 0 0 3px rgba(109, 79, 194, 0.2);
+}
+
+/* ==========================================================================
+   INPUT WRAPPER - GESTION DES LONGS TEXTES ET FICHIERS
+   ========================================================================== */
+.input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.5vw, 8px);
+  min-height: clamp(36px, 8vw, 48px);
+  max-width: calc(100% - 100px); /* Réserve de l'espace pour les boutons */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #9f7ee6 transparent;
+  padding: 2px 0;
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  flex-wrap: nowrap;
+}
+
+.input-wrapper::-webkit-scrollbar {
+  height: 3px;
+}
+
+.input-wrapper::-webkit-scrollbar-thumb {
+  background: #9f7ee6;
+  border-radius: 10px;
+}
+
+/* ==========================================================================
+   MESSAGE INPUT - GESTION DES LONGS TEXTES
+   ========================================================================== */
+.message-input {
+  flex: 1;
+  min-width: clamp(60px, 15vw, 100px);
+  max-width: 100%;
+  height: clamp(36px, 8vw, 48px);
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 clamp(6px, 1.5vw, 12px);
+  font-size: clamp(0.85rem, 3vw, 0.97rem);
+  color: #1e1e2f;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  resize: none; /* Empêche le redimensionnement */
+  box-sizing: border-box;
+}
+
+/* Style pour les longs textes - permet le scroll horizontal */
+.message-input:focus {
+  overflow-x: auto;
+}
+
+/* ==========================================================================
+   FILE CHIP - GESTION DES FICHIERS
+   ========================================================================== */
+.file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(4px, 1vw, 6px);
+  background: #f0f0f5;
+  border-radius: 30px;
+  padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 10px);
+  font-size: clamp(0.75rem, 2.5vw, 0.88rem);
+  color: #333;
+  max-width: min(200px, 40vw); /* Limite la largeur max */
+  flex-shrink: 0;
+  border: 1px solid #e0e0e8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.chip-preview {
+  width: clamp(20px, 5vw, 28px);
+  height: clamp(20px, 5vw, 28px);
+  border-radius: 6px;
+  object-fit: cover;
+  background: #e0e0e8;
+  flex-shrink: 0;
+}
+
+.chip-icon {
+  font-size: clamp(20px, 5vw, 24px);
+  color: #7a7a9c;
+  flex-shrink: 0;
+}
+
+.chip-filename {
+  max-width: min(120px, 25vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.chip-remove-btn {
+  width: clamp(16px, 4vw, 20px);
+  height: clamp(16px, 4vw, 20px);
+  border: none;
+  border-radius: 50%;
+  background: #6b7280;
+  color: white;
+  font-size: clamp(10px, 3vw, 14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.chip-remove-btn:hover {
+  background: #4b5563;
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   BOUTONS - GARANTIE DE NE PAS DÉBORDER
+   ========================================================================== */
+.attach-btn, .main-btn {
+  flex-shrink: 0;
+  width: clamp(36px, 9vw, 44px);
+  height: clamp(36px, 9vw, 44px);
+  min-width: clamp(36px, 9vw, 44px); /* Empêche le rétrécissement */
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.attach-btn {
+  background: #6D4FC2;
+  color: white;
+  box-shadow: 0 2px 8px rgba(109, 79, 194, 0.3);
+}
+
+.main-btn {
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   RECORDING TIMER
+   ========================================================================== */
+.recording-timer {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.5vw, 8px);
+  color: #9f7ee6;
+  font-weight: 500;
+  font-size: clamp(0.75rem, 2.5vw, 0.94rem);
+  white-space: nowrap;
+  margin-right: clamp(6px, 2vw, 12px);
+  background: rgba(159, 126, 230, 0.1);
+  padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 10px);
+  border-radius: 30px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   GESTION DES TRÈS PETITS ÉCRANS
+   ========================================================================== */
+@media (max-width: 480px) {
+  .input-wrapper {
+    max-width: calc(100% - 80px); /* Moins d'espace pour les boutons */
+  }
+  
+  .file-chip {
+    max-width: 130px;
+  }
+  
+  .chip-filename {
+    max-width: 60px;
+  }
+  
+  .recording-timer {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .input-wrapper {
+    max-width: calc(100% - 70px);
+  }
+  
+  .file-chip {
+    max-width: 110px;
+    font-size: 0.7rem;
+  }
+  
+  .chip-filename {
+    max-width: 45px;
+  }
+  
+  .recording-timer {
+    font-size: 0.7rem;
+  }
+}
+
+/* ==========================================================================
+   GESTION DES LONGS NOMS DE FICHIERS
+   ========================================================================== */
+.file-chip.long-filename {
+  max-width: min(180px, 35vw);
+}
+
+.file-chip.long-filename .chip-filename {
+  max-width: min(100px, 20vw);
+}
+
+/* ==========================================================================
+   MODE PAYSAGE SUR MOBILE
+   ========================================================================== */
+@media (max-height: 480px) and (orientation: landscape) {
+  .input-wrapper {
+    max-width: calc(100% - 90px);
+  }
+  
+  .message-input {
+    height: 34px;
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes softBreath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 clamp(8px, 2vw, 10px) rgba(167, 139, 250, 0.3);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+.main-btn.recording {
+  background: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.3);
+  animation: softBreath 2.4s infinite ease-in-out;
+}
+
+.recording-dot {
+  width: clamp(6px, 2vw, 8px);
+  height: clamp(6px, 2vw, 8px);
+  background: #9f7ee6;
+  border-radius: 50%;
+  animation: gentlePulse 2.2s infinite ease-in-out;
 }

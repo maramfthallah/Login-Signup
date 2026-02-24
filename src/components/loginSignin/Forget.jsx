@@ -1,16 +1,23 @@
-import React from 'react'
-
+import React from 'react';
+import './loginSignin.css'; // tu peux réutiliser le même CSS
+import email_icon from '../assets/email.png';
 const Forget = () => {
   return (
     <div className='container'>
-        <h1>Find you</h1>
+      <div className="header">
+        <div className="text">Forgot Password</div>
+        <div className="underline"></div>
+      </div>
+      <div className="inputs">
         <div className="input">
-            <input type="email" placeholder="Email adress" />
+          <img src={email_icon} alt="" />
+          <input type="email" placeholder='Enter your email to reset password' />
         </div>
-        <div className="button">
-            <button>Continue</button>
-        </div>
+      </div>
+      <div className="submit-container">
+        <button className="submit">Send</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 export default Forget
